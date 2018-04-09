@@ -30,6 +30,21 @@ function cadastra(file, novoName, novoEmail, novoPass, novoCPF, novoSexo, novoDa
         firebase.auth().createUserWithEmailAndPassword(novoEmail, novoPass).then(function(){
             // Update successful.
             //Cria o usuario no firebase no database.
+            firebase.database().ref('user/').push({
+                name : novoName,
+                email : novoEmail,
+                pass : novoPass,
+                cpf : novoCPF,
+                sexo : novoSexo,
+                data : novoData
+            }).key;
+            
+            //Cria uma referencia no storage do firabase.
+            var storageRef = firebase.storage().ref('icon/' + novoName + '/' + novoName);
+            //Ele adiciona a foto na referencia criada no firabase storage.
+            storageRef.put(file);
+            
+            alert("Cadastro feito com sucesso!")
             console.log("entrou")
             return true;
         }, function(error) {
@@ -52,21 +67,6 @@ function cadastra(file, novoName, novoEmail, novoPass, novoCPF, novoSexo, novoDa
 firebase.auth().onAuthStateChanged(firebaseUser =>{
     if(firebaseUser){
         
-        firebase.database().ref('user/').push({
-                name : novoName.value,
-                email : novoEmail.value,
-                pass : novoPass.value,
-                cpf : novoCPF.value,
-                sexo : novoSexo.value,
-                data : novoData.value
-            }).key;
-            
-            //Cria uma referencia no storage do firabase.
-            var storageRef = firebase.storage().ref('icon/' + novoName + '/' + novoName);
-            //Ele adiciona a foto na referencia criada no firabase storage.
-            storageRef.put(file);
-            
-            alert("Cadastro feito com sucesso!")
         //Se ele tiver logado com sucesso ele e mandado para a pagina principal.
     }else{
     
