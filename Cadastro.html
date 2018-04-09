@@ -48,6 +48,21 @@
                         <div class="input-field col s12">
                             <input id="cpf" type="text" class="validate">
                             <label for="cpf">CPF</label>
+                            <input class="cpf_cnpj">
+                             <style>
+        .valido {
+            border: 1px solid green;
+        }
+        .invalido {
+            border: 1px solid red;
+        }
+        </style>
+        
+        <!-- jQuery -->
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        
+        <!-- Funções para validação de CPF e CNPJ -->
+        <script src="assets/js/valida_cpf_cnpj.js"></script>
                         </div>
                     </div>
                     <div class="row">
@@ -110,5 +125,6 @@
             });
         </script>
 		<script type="text/javascript" src="assets/js/Cadastro.js"></script>
+        <script src="js/valida_cpf_cnpj.js"></script>
     </body>
 </html>
