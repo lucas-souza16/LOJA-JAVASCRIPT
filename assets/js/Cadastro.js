@@ -39,9 +39,16 @@ function cadastra(file, novoName, novoEmail, novoPass, novoCPF, novoSexo, novoDa
                 data : novoData
             }).key;
             
-            //Cria uma referencia no storage do firabase.
-            var storageRef = firebase.storage().ref('icon/' + novoName + '/' + novoName);
-            //Ele adiciona a foto na referencia criada no firabase storage.
+            // Create a root reference
+                    var storageRef = firebase.storage().ref();
+
+                    // Create a reference to 'mountains.jpg'
+                    var mountainsRef = storageRef.child('login.jpg');'
+                    var mountainImagesRef = storageRef.child('icon/login.jpg');
+
+                    // While the file names are the same, the references point to different files
+                    mountainsRef.name === mountainImagesRef.name            // true
+                    mountainsRef.fullPath === mountainImagesRef.fullPath    // false
             storageRef.put(file);
             
             alert("Cadastro feito com sucesso!")
